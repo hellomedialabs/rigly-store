@@ -4,12 +4,12 @@ const RIGLY = {
   contactKey: "4473c871-a0b8-4d91-99d3-b998170749c2",
   links: {
     tripod: "https://buy.stripe.com/aFaaEPapV2i6eQe9yB5ZC05",
-    light: "https://buy.stripe.com/9B600b2Xt8GubE27qt5ZC04"
+    light: "https://buy.stripe.com/8x26ozbtZ7CqfUi2695ZC06"
   },
-  // Landed cost on CJ (product + US shipping): Clip Light $11.76, Tripod Stick $11.94
+  // Landed cost on CJ (product + US shipping): Magnetic Light $14.49, Tripod Stick $11.94
   prices: {
     tripod: "24.99",
-    light: "24.99"
+    light: "29.99"
   }
 };
 // ===== END EDIT BLOCK =====
@@ -62,12 +62,12 @@ const RIGLY = {
 
   // Scroll-scrubbed product images (scale and rise as they enter), plus sticky local nav
   var wraps = document.querySelectorAll(".shot-wrap");
-  var tiles = document.querySelectorAll("#clip-light, #tripod-stick");
+  var tiles = document.querySelectorAll("#magnetic-light, #tripod-stick");
   var lnav = document.getElementById("lnav");
   var ltitle = document.getElementById("ltitle");
   var lprice = document.getElementById("lprice");
   var lbuy = document.getElementById("lbuy");
-  var names = { "clip-light": ["Rigly Clip Light", "light"], "tripod-stick": ["Rigly Tripod Stick", "tripod"] };
+  var names = { "magnetic-light": ["Rigly Magnetic Light", "light"], "tripod-stick": ["Rigly Tripod Stick", "tripod"] };
   var current = "";
   var ticking = false;
 
