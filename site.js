@@ -3,8 +3,8 @@ const RIGLY = {
   supportEmail: "REPLACE_WITH_SUPPORT_EMAIL",
   // Paste Stripe Payment Link URLs here after Stripe is set up (Phase 4)
   links: {
-    tripod: "#",
-    light: "#"
+    tripod: "https://buy.stripe.com/7sYbIT7dJ3ma37w9yB5ZC02",
+    light: "https://buy.stripe.com/9B6dR1eGb2i637w6mp5ZC03"
   },
   // Confirm against real CJ cost before publishing
   prices: {
