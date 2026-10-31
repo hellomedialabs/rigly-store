@@ -1,19 +1,45 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contact | Rigly</title><link rel="stylesheet" href="style.css"></head><body>
-<header><div class="wrap"><a class="logo" href="index.html">Rig<span>ly</span></a><nav><a href="index.html#shop">Shop</a></nav></div></header>
-<main class="wrap doc">
-<h1>Contact</h1>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Contact | Rigly</title>
+<meta name="description" content="">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<script>document.documentElement.className="js"</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="gnav" aria-label="Main"><div class="gnav-in">
+  <a class="logo" href="index.html" aria-label="Rigly home"><img class="mark" src="logo.svg" alt="" width="26" height="26"><span class="word">R<span class="dotless">&#305;</span>gly</span></a>
+  <ul>
+    <li><a href="index.html#clip-light">Clip Light</a></li>
+    <li><a href="index.html#tripod-stick">Tripod Stick</a></li>
+    <li><a href="shipping.html">Shipping</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div></nav>
+<main class="doc"><h1 class="rv">Contact</h1><div class="rv" style="--d:.08s">
 <p>Questions about an order, shipping or a product? Send us a message with your order number and we will reply within 2 business days.</p>
 <form id="contact-form" method="POST">
-  <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-  <p><label>Name<br><input name="name" required style="width:100%;padding:10px"></label></p>
-  <p><label>Your email<br><input name="email" type="email" required style="width:100%;padding:10px"></label></p>
-  <p><label>Order number (if any)<br><input name="order" style="width:100%;padding:10px"></label></p>
-  <p><label>Message<br><textarea name="message" rows="5" required style="width:100%;padding:10px"></textarea></label></p>
-  <button class="btn" type="submit" style="border:0;cursor:pointer">Send message</button>
+  <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+  <label>Name<input name="name" required></label>
+  <label>Your email<input name="email" type="email" required></label>
+  <label>Order number (if any)<input name="order"></label>
+  <label>Message<textarea name="message" rows="5" required></textarea></label>
+  <button class="btn primary" type="submit">Send message</button>
 </form>
 <p id="form-status" role="status"></p>
-</main>
-<footer><div class="wrap"><a href="index.html">Home</a><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></footer>
-<script src="site.js"></script></body></html>
+</div></main>
+<footer class="foot"><div class="foot-in">
+  <p class="note">Prices in USD. Ships to the United States and Canada. Free shipping on every order.</p>
+  <hr>
+  <div class="foot-row">
+    <p class="copy">&copy; Rigly</p>
+    <p class="links"><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="contact.html">Contact</a></p>
+  </div>
+</div></footer>
+<script src="site.js"></script>
+</body>
+</html>

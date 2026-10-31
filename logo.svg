@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3f4b"/><stop offset="1" stop-color="#07080b"/></linearGradient>
+    <radialGradient id="o" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#9bd6ff"/><stop offset=".45" stop-color="#2d9bff"/><stop offset="1" stop-color="#0050b8"/></radialGradient>
+    <linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <filter id="b" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#g)"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="17.5" fill="none" stroke="#fff" stroke-opacity=".28"/>
+  <path d="M8 20C8 12 13 8 21 8h22c8 0 13 4 13 12" fill="none" stroke="url(#s)" stroke-width="2" stroke-linecap="round" opacity=".9"/>
+  <circle cx="32" cy="33" r="17" fill="#2d9bff" opacity=".55" filter="url(#b)"/>
+  <circle cx="32" cy="33" r="14" fill="url(#o)"/>
+  <circle cx="32" cy="33" r="14" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.2"/>
+  <path d="M23 30a10 10 0 0 1 8-8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".9"/>
+  <circle cx="38.5" cy="39.5" r="2" fill="#fff" opacity=".45"/>
+</svg>

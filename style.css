@@ -1,29 +1,152 @@
-:root{--bg:#fff;--fg:#161616;--muted:#6b6b6b;--accent:#ff4b00;--card:#f5f5f4;--line:#e5e5e3}
-@media (prefers-color-scheme:dark){:root{--bg:#121212;--fg:#f2f2f0;--muted:#a0a09c;--card:#1d1d1c;--line:#2d2d2b}}
+/* Rigly: Apple-style tile system with Liquid Glass accents.
+   Tokens measured from apple.com: 44px translucent nav, 56/60 + 40/44 headlines (600),
+   28/32 subheads, 17/25 body, 44px pill buttons, #0071e3 accent, 12px tile gaps. */
+:root{
+  --ink:#1d1d1f;--paper:#f5f5f7;--muted:#6e6e73;--muted-dk:#86868b;--blue:#0071e3;--blue-hi:#0077ed;--blue-dk:#2997ff;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(.28,.11,.32,1);
+}
 *{box-sizing:border-box}
-body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--fg)}
-a{color:inherit}
-.wrap{max-width:960px;margin:0 auto;padding:0 16px}
-header{border-bottom:1px solid var(--line)}
-header .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
-.logo{font-weight:800;font-size:22px;letter-spacing:-.5px;text-decoration:none}
-.logo span{color:var(--accent)}
-nav a{margin-left:20px;text-decoration:none;color:var(--muted);font-size:15px}
-.hero{padding:64px 0 40px}
-.hero h1{font-size:clamp(32px,6vw,52px);line-height:1.1;margin:0 0 14px;letter-spacing:-1px}
-.hero p{color:var(--muted);max-width:520px;margin:0 0 24px}
-.btn{display:inline-block;background:var(--accent);color:#fff;padding:12px 22px;border-radius:10px;text-decoration:none;font-weight:600}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:24px 0 56px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.ph{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;background:var(--line)}
-.card .body{padding:20px}
-.card h2{margin:0 0 6px;font-size:20px}
-.card p{margin:0 0 14px;color:var(--muted);font-size:15px}
-.price{font-weight:700;font-size:20px;margin-right:12px}
-.perks{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;padding:8px 0 56px;color:var(--muted);font-size:15px}
-.perks strong{display:block;color:var(--fg)}
-footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:14px}
-footer a{margin-right:16px}
-.doc{padding:40px 0 64px;max-width:720px}
-.doc h1{letter-spacing:-.5px}
-.doc h2{margin-top:32px;font-size:20px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:44px}
+body{margin:0;background:#fff;color:var(--ink);font:400 17px/1.47059 var(--font);letter-spacing:-.022em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+
+/* ---------- global nav (dark, translucent, as on apple.com) ---------- */
+.gnav{position:fixed;top:0;left:0;right:0;z-index:100;height:44px;
+  background:rgba(29,29,31,.8);-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);
+  box-shadow:inset 0 -1px 0 rgba(255,255,255,.08);animation:navin .8s var(--ease) both}
+.gnav-in{max-width:1024px;height:44px;margin:0 auto;padding:0 max(22px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between}
+.gnav ul{display:flex;gap:28px}
+.gnav li a{font-size:12px;letter-spacing:-.01em;color:rgba(255,255,255,.8);transition:color .3s var(--ease)}
+.gnav li a:hover{color:#fff}
+.logo{display:flex;align-items:center;gap:7px;color:#f5f5f7}
+.logo .mark{width:22px;height:22px;border-radius:6px}
+.word{font:600 18px/1 var(--display);letter-spacing:-.045em}
+.dotless{position:relative;display:inline-block}
+.dotless::after{content:"";position:absolute;left:50%;top:.17em;width:.2em;height:.2em;border-radius:50%;transform:translateX(-50%);
+  background:radial-gradient(circle at 35% 30%,#d4ecff,#0a84ff 55%,#0050b8);box-shadow:0 0 .45em rgba(41,151,255,.95)}
+@keyframes navin{from{opacity:0;transform:translateY(-100%)}to{opacity:1;transform:none}}
+
+/* ---------- sticky local nav (like Apple product pages) ---------- */
+.lnav{position:fixed;top:44px;left:0;right:0;z-index:90;height:52px;background:rgba(245,245,247,.8);
+  -webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);box-shadow:inset 0 -1px 0 rgba(0,0,0,.1);
+  transform:translateY(-100%);opacity:0;visibility:hidden;transition:transform .5s var(--ease),opacity .4s var(--ease),visibility 0s .5s}
+.lnav.show{transform:none;opacity:1;visibility:visible;transition:transform .5s var(--ease),opacity .4s var(--ease)}
+.lnav-in{max-width:1024px;height:52px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between}
+.ltitle{font:600 21px/1 var(--display);letter-spacing:.011em}
+.lright{display:flex;align-items:center;gap:14px}
+.lprice{font-size:12px;color:var(--muted)}
+.btn.sm{min-height:0;padding:6px 14px;font-size:12px;line-height:16px}
+
+/* ---------- tiles ---------- */
+.tile{position:relative;text-align:center;overflow:hidden;margin-bottom:12px;padding:56px 22px 0}
+.tile.dark{background:#000;color:#f5f5f7}
+.tile.light{background:var(--paper);color:var(--ink)}
+.tile h1,.tile h2{font:600 56px/60px var(--display);letter-spacing:-.005em}
+.tile h3{font:600 40px/44px var(--display);letter-spacing:-.003em}
+.tile .sub{font:400 28px/32px var(--display);letter-spacing:.007em;margin-top:6px}
+.tile .fine{font-size:17px;line-height:25px;margin-top:10px;color:var(--muted)}
+.tile.dark .fine{color:var(--muted-dk)}
+.grad{background:linear-gradient(90deg,#64d2ff 0%,#0a84ff 45%,#bf5af2 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+
+.hero{padding-top:100px;min-height:calc(100vh - 12px);min-height:calc(100svh - 12px);display:flex;flex-direction:column;align-items:center}
+.tile.light:not(.small){min-height:min(820px,calc(100svh - 12px));display:flex;flex-direction:column;align-items:center}
+.copy{position:relative;z-index:2}
+.shot-wrap{position:relative;margin-top:auto;width:min(620px,92vw);padding-top:28px;--p:1}
+.shot{width:100%;height:auto;transform-origin:50% 100%;will-change:transform;
+  transform:translateY(calc((1 - var(--p)) * 56px)) scale(calc(.9 + .1 * var(--p)))}
+.tile.light .shot{filter:drop-shadow(0 34px 30px rgba(0,0,0,.22))}
+.tile.dark .shot{filter:drop-shadow(0 0 60px rgba(100,180,255,.28))}
+.glow{position:absolute;left:50%;top:46%;width:130%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(10,132,255,.34) 0%,rgba(10,132,255,0) 62%)}
+
+/* ---------- buttons (44px pills, 11px 21px, 980px radius) ---------- */
+.btn{display:inline-block;min-height:44px;padding:11px 21px;border-radius:980px;border:1px solid transparent;font:400 17px/20px var(--font);letter-spacing:-.022em;cursor:pointer;
+  transition:background-color .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.primary:hover{background:var(--blue-hi)}
+.btn.outline{border-color:var(--blue);color:var(--blue)}
+.tile.dark .btn.outline{border-color:var(--blue-dk);color:var(--blue-dk)}
+.btn.outline:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn:focus-visible,.gnav a:focus-visible,.foot a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+/* ---------- Liquid Glass (floating controls) ---------- */
+.glass{position:relative;isolation:isolate;overflow:hidden;
+  -webkit-backdrop-filter:blur(22px) saturate(190%);backdrop-filter:blur(22px) saturate(190%)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none;
+  background:radial-gradient(260px circle at var(--mx,30%) var(--my,0%),rgba(255,255,255,.55),rgba(255,255,255,0) 60%);opacity:.9}
+.chip{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:14px;white-space:nowrap;
+  padding:12px 22px;border-radius:999px;font-size:14px;letter-spacing:-.01em}
+.chip i{width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.4}
+.chip.dk{color:#f5f5f7;background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.22);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.45),inset 0 -1px 1px rgba(255,255,255,.1),0 12px 30px rgba(0,0,0,.4)}
+.chip.lt{color:var(--ink);background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(255,255,255,.35));border:1px solid rgba(255,255,255,.9);
+  box-shadow:inset 0 1px 1px #fff,inset 0 -1px 1px rgba(255,255,255,.5),0 12px 30px rgba(0,0,0,.12)}
+
+/* ---------- pair of small tiles ---------- */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.pair .tile{margin:0}
+.tile.small{min-height:380px;padding:64px 28px}
+.tile.small .sub{font-size:21px;line-height:25px;max-width:360px;margin:10px auto 0}
+
+/* ---------- documents ---------- */
+.doc{max-width:692px;margin:0 auto;padding:124px 22px 96px}
+.doc h1{font:600 48px/52px var(--display);letter-spacing:-.003em;margin-bottom:28px}
+.doc h2{font:600 24px/28px var(--display);letter-spacing:.009em;margin:40px 0 8px}
+.doc p{font-size:17px;line-height:25px;color:#424245;margin-bottom:14px}
+.doc a{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+.doc form{display:grid;gap:16px;margin-top:28px}
+.doc label{display:grid;gap:6px;font-size:14px;color:var(--muted)}
+.doc input,.doc textarea{font:400 17px/25px var(--font);color:var(--ink);width:100%;padding:12px 16px;border:1px solid #d2d2d7;border-radius:12px;background:#fff;transition:border-color .3s var(--ease),box-shadow .3s var(--ease)}
+.doc input:focus,.doc textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,113,227,.2)}
+.doc .btn{justify-self:start}
+.hp{display:none}
+#form-status{margin-top:16px;color:var(--ink)}
+
+/* ---------- footer ---------- */
+.foot{background:var(--paper);color:var(--muted);font-size:12px;line-height:16px;letter-spacing:-.01em;padding:20px 22px 24px;margin-top:0}
+.foot-in{max-width:980px;margin:0 auto}
+.foot .note{padding-bottom:14px}
+.foot hr{border:0;border-top:1px solid #d2d2d7;margin:0 0 14px}
+.foot-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot a{color:#424245;margin-left:20px}
+.foot a:hover{text-decoration:underline}
+.foot .links a:first-child{margin-left:0}
+
+/* ---------- scroll reveal ---------- */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease) var(--d,0s),transform .9s var(--ease) var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:1068px){
+  .tile h1,.tile h2{font-size:48px;line-height:52px}
+  .tile h3{font-size:32px;line-height:36px}
+}
+@media (max-width:734px){
+  body{font-size:17px}
+  .gnav ul{gap:16px}
+  .gnav li:nth-child(3){display:none}
+  .tile{padding-top:44px}
+  .tile h1,.tile h2{font-size:40px;line-height:44px}
+  .tile h3{font-size:32px;line-height:36px}
+  .tile .sub{font-size:21px;line-height:25px}
+  .hero{padding-top:88px;min-height:calc(100svh - 12px)}
+  .shot-wrap{width:min(440px,96vw)}
+  .chip{bottom:18px;gap:10px;padding:10px 16px;font-size:12px}
+  .pair{grid-template-columns:1fr}
+  .tile.small{min-height:300px;padding:48px 22px}
+  .doc h1{font-size:34px;line-height:38px}
+  .foot-row{flex-direction:column}
+}
+@media (max-width:420px){.chip i:nth-of-type(2),.chip span:nth-of-type(3){display:none}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .gnav{animation:none}
+  .shot{transform:none!important}
+}
