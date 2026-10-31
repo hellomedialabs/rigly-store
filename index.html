@@ -9,6 +9,7 @@
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <script>document.documentElement.className="js"</script>
 <link rel="preload" as="image" href="light.png">
+<link rel="preload" as="image" href="tripod.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,36 +22,39 @@
     <li><a href="contact.html">Contact</a></li>
   </ul>
 </div></nav>
-<div class="lnav" id="lnav" aria-label="Product bar"><div class="lnav-in">
-  <span class="ltitle" id="ltitle">Rigly Clip Light</span>
-  <span class="lright"><span class="lprice" id="lprice">$24.99</span><a class="btn primary sm" id="lbuy" href="#">Buy</a></span>
-</div></div>
 
 <main>
-  <section id="clip-light" class="tile dark hero">
-    <div class="copy">
-      <h1 class="rv">Rigly Clip Light</h1>
-      <p class="sub rv" style="--d:.08s"><span class="grad">Light that goes where you go.</span></p>
-      <p class="fine rv" style="--d:.16s">From $<span data-price="light"></span>. Free shipping.</p>
-      <p class="cta rv" style="--d:.24s"><a class="btn primary" data-buy="light" href="#">Buy</a><a class="btn outline" href="#tripod-stick">Tripod Stick</a></p>
-    </div>
-    <div class="shot-wrap"><div class="glow"></div><img class="shot" src="light.png" alt="Rigly Clip Light, a compact LED panel on a clip mount" width="900" height="900" fetchpriority="high"></div>
-    <div class="chip glass dk"><span>Clip-on</span><i></i><span>Tilts to any angle</span><i></i><span>Free shipping</span></div>
+  <section class="intro">
+    <h1 class="rv">Film better. Carry less.</h1>
+    <p class="sub rv" style="--d:.08s">Two simple tools for the camera in your pocket.</p>
   </section>
 
-  <section id="tripod-stick" class="tile light">
-    <div class="copy">
-      <h2 class="rv">Rigly Tripod Stick</h2>
-      <p class="sub rv" style="--d:.08s">A selfie stick. And a tripod.</p>
-      <p class="fine rv" style="--d:.16s">From $<span data-price="tripod"></span>. Free shipping.</p>
-      <p class="cta rv" style="--d:.24s"><a class="btn primary" data-buy="tripod" href="#">Buy</a><a class="btn outline" href="#clip-light">Clip Light</a></p>
-    </div>
-    <div class="shot-wrap"><img class="shot" src="tripod.png" alt="Rigly Tripod Stick, folded" width="900" height="900" loading="lazy"></div>
-    <div class="chip glass lt"><span>Extends</span><i></i><span>Folds flat</span><i></i><span>Stands on its own</span></div>
-  </section>
+  <div class="duo">
+    <section id="clip-light" class="tile light prod">
+      <div class="copy">
+        <h2 class="rv">Clip Light</h2>
+        <p class="tag rv" style="--d:.06s"><span class="grad">Light that goes where you go.</span></p>
+        <p class="fine rv" style="--d:.12s">From $<span data-price="light"></span>. Free shipping.</p>
+        <p class="cta rv" style="--d:.18s"><a class="btn primary" data-buy="light" href="#">Buy</a></p>
+      </div>
+      <div class="shot-wrap"><img class="shot" src="light.png" alt="Rigly Clip Light, a compact LED panel on a clip mount" width="900" height="900" fetchpriority="high"></div>
+      <div class="chip glass lt"><span>Clip-on</span><i></i><span>Tilts to any angle</span></div>
+    </section>
+
+    <section id="tripod-stick" class="tile light prod">
+      <div class="copy">
+        <h2 class="rv" style="--d:.06s">Tripod Stick</h2>
+        <p class="tag rv" style="--d:.12s"><span class="grad">A selfie stick. And a tripod.</span></p>
+        <p class="fine rv" style="--d:.18s">From $<span data-price="tripod"></span>. Free shipping.</p>
+        <p class="cta rv" style="--d:.24s"><a class="btn primary" data-buy="tripod" href="#">Buy</a></p>
+      </div>
+      <div class="shot-wrap"><img class="shot" src="tripod.png" alt="Rigly Tripod Stick, folded" width="900" height="900" fetchpriority="high"></div>
+      <div class="chip glass lt"><span>Extends</span><i></i><span>Folds flat</span><i></i><span>Stands alone</span></div>
+    </section>
+  </div>
 
   <div class="pair">
-    <section class="tile light small">
+    <section class="tile plain small">
       <h3 class="rv">Free shipping.</h3>
       <p class="sub rv" style="--d:.08s">On every order to the US and Canada.</p>
     </section>
