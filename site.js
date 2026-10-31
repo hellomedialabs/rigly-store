@@ -4,13 +4,13 @@ const RIGLY = {
   contactKey: "4473c871-a0b8-4d91-99d3-b998170749c2",
   // Stripe Payment Links, one per product
   links: {
-    light: "https://buy.stripe.com/aFa8wH41x5uidMa8ux5ZC0e",
-    tripod: "https://buy.stripe.com/7sYbITfKf2i6eQe8ux5ZC0f",
-    facetrack: "https://buy.stripe.com/28E9AL9lRe0O7nM8ux5ZC0g",
-    powerbank: "https://buy.stripe.com/8x25kv7dJcWKgYm9yB5ZC0h",
-    micusbc: "https://buy.stripe.com/14A4gr0PlbSG4bA6mp5ZC0i",
-    miclightning: "https://buy.stripe.com/bJe7sDapVaOC5fE3ad5ZC0j",
-    ringlight: "https://buy.stripe.com/5kQ00b2Xt6ymgYm7qt5ZC0k"
+    light: "https://buy.stripe.com/00w7sD41x4qeazYcKN5ZC0l",
+    tripod: "https://buy.stripe.com/4gM6ozbtZg8W5fE9yB5ZC0m",
+    facetrack: "https://buy.stripe.com/6oUcMX8hN8Gu8rQbGJ5ZC0n",
+    powerbank: "https://buy.stripe.com/00w00b41xe0O8rQaCF5ZC0o",
+    micusbc: "https://buy.stripe.com/fZu5kv69F09Y4bAh135ZC0p",
+    miclightning: "https://buy.stripe.com/14A7sDdC77Cq23s1255ZC0q",
+    ringlight: "https://buy.stripe.com/6oU4gr2Xt5ui6jI5il5ZC0r"
   },
   // Display prices (must match the Stripe links above)
   prices: {
