@@ -21,7 +21,7 @@ ul{padding:0;list-style:none}
   box-shadow:inset 0 -1px 0 rgba(0,0,0,.1);animation:navin .8s var(--ease) both}
 .gnav-in{max-width:1024px;height:44px;margin:0 auto;padding:0 max(22px,env(safe-area-inset-left));display:flex;align-items:center;justify-content:space-between}
 .gnav ul{display:flex;gap:28px}
-.gnav li a{font-size:12px;letter-spacing:-.01em;color:rgba(0,0,0,.8);transition:color .3s var(--ease)}
+.gnav li a{white-space:nowrap;font-size:12px;letter-spacing:-.01em;color:rgba(0,0,0,.8);transition:color .3s var(--ease)}
 .gnav li a:hover{color:#000}
 .logo{display:flex;align-items:center;gap:7px;color:var(--ink)}
 .logo .mark{width:22px;height:22px;border-radius:50%}
@@ -129,7 +129,7 @@ ul{padding:0;list-style:none}
 @media (max-width:734px){
   body{font-size:17px}
   .gnav ul{gap:16px}
-  .gnav li:nth-child(3){display:none}
+  .gnav li:nth-child(1),.gnav li:nth-child(2),.gnav li:nth-child(4){display:none}
   .tile{padding-top:44px}
   .tile h1,.tile h2{font-size:40px;line-height:44px}
   .tile h3{font-size:32px;line-height:36px}
@@ -169,3 +169,18 @@ ul{padding:0;list-style:none}
   .tile.prod{min-height:600px;padding-top:40px}
   .prod .shot-wrap{width:min(340px,80%)}
 }
+
+/* ---------- more gear grid ---------- */
+.more-intro{padding:64px 22px 32px}
+.more-intro h2{font:600 40px/44px var(--display);letter-spacing:-.003em}
+.more{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:12px}
+.more .tile{margin:0}
+.mini{grid-column:span 2;display:flex;flex-direction:column;align-items:center;padding-top:40px}
+.mini:nth-child(n+4){grid-column:span 3}
+.mini h3{font:600 32px/36px var(--display);letter-spacing:-.003em}
+.mini .tag{font:400 19px/23px var(--display);margin-top:4px}
+.mini .cta{margin-top:16px;gap:10px}
+.mini .btn{padding:9px 18px;font-size:15px;min-height:40px}
+.mini .shot-wrap{width:min(340px,80%);margin-top:12px;padding-top:0;margin-bottom:28px}
+@media (max-width:1068px){.more{grid-template-columns:1fr 1fr}.mini,.mini:nth-child(n+4){grid-column:span 1}.mini:last-child{grid-column:span 2}.more-intro h2{font-size:32px;line-height:36px}}
+@media (max-width:734px){.more{grid-template-columns:1fr}.mini,.mini:last-child,.mini:nth-child(n+4){grid-column:span 1}.mini{min-height:0}.more-intro h2{font-size:28px;line-height:32px}}

@@ -4,12 +4,25 @@ const RIGLY = {
   contactKey: "4473c871-a0b8-4d91-99d3-b998170749c2",
   links: {
     tripod: "https://buy.stripe.com/aFaaEPapV2i6eQe9yB5ZC05",
-    light: "https://buy.stripe.com/8x26ozbtZ7CqfUi2695ZC06"
+    light: "https://buy.stripe.com/8x26ozbtZ7CqfUi2695ZC06",
+    facetrack: "https://buy.stripe.com/4gM00beGb5ui4bA8ux5ZC07",
+    powerbank: "https://buy.stripe.com/bJeeV569F1e223sbGJ5ZC08",
+    micusbc: "https://buy.stripe.com/aFa7sDfKf7CqcI6h135ZC09",
+    miclightning: "https://buy.stripe.com/14A5kv7dJe0O37wcKN5ZC0a",
+    ringlight: "https://buy.stripe.com/00w7sD2Xt7Cq0ZoeSV5ZC0d",
+    gimbal: "https://buy.stripe.com/28E7sDgOj7Cq0ZoeSV5ZC0c"
   },
-  // Landed cost on CJ (product + US shipping): Magnetic Light $14.49, Tripod Stick $11.94
+  // Landed cost on CJ (product + US shipping): Magnetic Light $14.49, Tripod Stick $11.94, Face-Tracking $23.29,
+  // Power Bank $16.58, Mic $13.98, Ring Light $10.67, Folding Gimbal $48.68
   prices: {
     tripod: "24.99",
-    light: "29.99"
+    light: "29.99",
+    facetrack: "44.99",
+    powerbank: "34.99",
+    micusbc: "29.99",
+    miclightning: "29.99",
+    ringlight: "19.99",
+    gimbal: "79.99"
   }
 };
 // ===== END EDIT BLOCK =====
