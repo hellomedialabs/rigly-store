@@ -2,9 +2,10 @@
 const RIGLY = {
   // Web3Forms public access key (safe to publish)
   contactKey: "4473c871-a0b8-4d91-99d3-b998170749c2",
+  // Stripe Payment Links, one per product
   links: {
-    tripod: "https://buy.stripe.com/aFaaEPapV2i6eQe9yB5ZC05",
     light: "https://buy.stripe.com/8x26ozbtZ7CqfUi2695ZC06",
+    tripod: "https://buy.stripe.com/aFaaEPapV2i6eQe9yB5ZC05",
     facetrack: "https://buy.stripe.com/4gM00beGb5ui4bA8ux5ZC07",
     powerbank: "https://buy.stripe.com/bJeeV569F1e223sbGJ5ZC08",
     micusbc: "https://buy.stripe.com/aFa7sDfKf7CqcI6h135ZC09",
@@ -12,11 +13,10 @@ const RIGLY = {
     ringlight: "https://buy.stripe.com/00w7sD2Xt7Cq0ZoeSV5ZC0d",
     gimbal: "https://buy.stripe.com/28E7sDgOj7Cq0ZoeSV5ZC0c"
   },
-  // Landed cost on CJ (product + US shipping): Magnetic Light $14.49, Tripod Stick $11.94, Face-Tracking $23.29,
-  // Power Bank $16.58, Mic $13.98, Ring Light $10.67, Folding Gimbal $48.68
+  // Display prices (must match the Stripe links above)
   prices: {
-    tripod: "24.99",
     light: "29.99",
+    tripod: "24.99",
     facetrack: "44.99",
     powerbank: "34.99",
     micusbc: "29.99",
@@ -29,7 +29,7 @@ const RIGLY = {
 
 (function () {
   "use strict";
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Buy links and prices
   document.querySelectorAll("[data-buy]").forEach(function (el) {
@@ -40,10 +40,11 @@ const RIGLY = {
     el.textContent = RIGLY.prices[el.dataset.price];
   });
 
-  // Contact form
+  // Contact form (Web3Forms)
   var form = document.getElementById("contact-form");
   if (form) {
     var status = document.getElementById("form-status");
+    var fail = "Sorry, something went wrong. Please try again later.";
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var data = new FormData(form);
@@ -54,73 +55,51 @@ const RIGLY = {
         .then(function (r) { return r.json(); })
         .then(function (j) {
           if (j.success) { status.textContent = "Thanks! We will reply within 2 business days."; form.reset(); }
-          else { status.textContent = "Sorry, something went wrong. Please try again later."; }
+          else { status.textContent = fail; }
         })
-        .catch(function () { status.textContent = "Sorry, something went wrong. Please try again later."; });
+        .catch(function () { status.textContent = fail; });
     });
   }
 
-  // Scroll reveal: like Apple's scroll groups, fire once an element's top passes 70% of the viewport
-  var rv = document.querySelectorAll(".rv");
-  if ("IntersectionObserver" in window && !reduce) {
+  // Scroll reveal: fire once an element passes 70% of the viewport (like Apple's scroll groups)
+  var revealed = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window && !reduceMotion) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting || en.boundingClientRect.top < 0) { en.target.classList.add("in"); io.unobserve(en.target); }
+        if (en.isIntersecting || en.boundingClientRect.top < 0) {
+          en.target.classList.add("in");
+          io.unobserve(en.target);
+        }
       });
     }, { rootMargin: "0px 0px -30% 0px", threshold: 0 });
-    rv.forEach(function (el) { io.observe(el); });
+    revealed.forEach(function (el) { io.observe(el); });
   } else {
-    rv.forEach(function (el) { el.classList.add("in"); });
+    revealed.forEach(function (el) { el.classList.add("in"); });
   }
 
-  // Scroll-scrubbed product images (scale and rise as they enter), plus sticky local nav
+  // Scroll-scrubbed product images: scale and rise as they enter the viewport
   var wraps = document.querySelectorAll(".shot-wrap");
-  var tiles = document.querySelectorAll("#magnetic-light, #tripod-stick");
-  var lnav = document.getElementById("lnav");
-  var ltitle = document.getElementById("ltitle");
-  var lprice = document.getElementById("lprice");
-  var lbuy = document.getElementById("lbuy");
-  var names = { "magnetic-light": ["Rigly Magnetic Light", "light"], "tripod-stick": ["Rigly Tripod Stick", "tripod"] };
-  var current = "";
   var ticking = false;
-
-  function frame() {
+  function scrub() {
     ticking = false;
     var vh = window.innerHeight;
-    if (!reduce) {
-      wraps.forEach(function (w) {
-        var r = w.getBoundingClientRect();
-        if (r.bottom < -100 || r.top > vh + 100) return;
-        var p = Math.min(1, Math.max(0, (vh * 0.95 - r.top) / (vh * 0.55)));
-        w.style.setProperty("--p", p.toFixed(3));
-      });
-    }
-    if (lnav) {
-      var first = document.querySelector(".hero .cta");
-      var pastHero = first && first.getBoundingClientRect().bottom < 44;
-      var lastEnd = tiles.length ? tiles[tiles.length - 1].getBoundingClientRect().bottom : 0;
-      lnav.classList.toggle("show", !!pastHero && lastEnd > 140);
-      var active = "";
-      tiles.forEach(function (t) {
-        var r = t.getBoundingClientRect();
-        if (r.top < vh * 0.5 && r.bottom > vh * 0.3) active = t.id;
-      });
-      if (active && active !== current && names[active]) {
-        current = active;
-        var n = names[active];
-        ltitle.textContent = n[0];
-        lprice.textContent = "$" + RIGLY.prices[n[1]];
-        lbuy.href = RIGLY.links[n[1]];
-      }
-    }
+    wraps.forEach(function (w) {
+      var r = w.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      var p = Math.min(1, Math.max(0, (vh * 0.95 - r.top) / (vh * 0.55)));
+      w.style.setProperty("--p", p.toFixed(3));
+    });
   }
-  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll, { passive: true });
-  frame();
+  if (!reduceMotion && wraps.length) {
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(scrub); }
+    }, { passive: true });
+    window.addEventListener("resize", scrub, { passive: true });
+    scrub();
+  }
 
-  // Liquid Glass: specular highlight follows the pointer
-  if (!reduce && window.matchMedia("(hover: hover)").matches) {
+  // Liquid Glass: the specular highlight follows the pointer
+  if (!reduceMotion && window.matchMedia("(hover: hover)").matches) {
     var glass = document.querySelectorAll(".glass");
     window.addEventListener("pointermove", function (e) {
       glass.forEach(function (el) {
