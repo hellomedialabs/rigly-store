@@ -4,7 +4,15 @@
 <header><div class="wrap"><a class="logo" href="index.html">Rig<span>ly</span></a><nav><a href="index.html#shop">Shop</a></nav></div></header>
 <main class="wrap doc">
 <h1>Contact</h1>
-<p>Questions about an order, shipping or a product? Email <a data-email href="#"></a> with your order number and we will reply within 2 business days.</p>
+<p>Questions about an order, shipping or a product? Send us a message with your order number and we will reply within 2 business days.</p>
+<p id="form-pending" hidden>The contact form is being set up. Please check back soon.</p>
+<form id="contact-form" method="POST" hidden>
+  <p><label>Name<br><input name="name" required style="width:100%;padding:10px"></label></p>
+  <p><label>Your email<br><input name="email" type="email" required style="width:100%;padding:10px"></label></p>
+  <p><label>Order number (if any)<br><input name="order" style="width:100%;padding:10px"></label></p>
+  <p><label>Message<br><textarea name="message" rows="5" required style="width:100%;padding:10px"></textarea></label></p>
+  <button class="btn" type="submit" style="border:0;cursor:pointer">Send message</button>
+</form>
 </main>
 <footer><div class="wrap"><a href="index.html">Home</a><a href="shipping.html">Shipping</a><a href="returns.html">Returns</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></footer>
 <script src="site.js"></script></body></html>
