@@ -1,6 +1,6 @@
 // ===== EDIT ONLY THIS BLOCK =====
 const RIGLY = {
-  supportEmail: "REPLACE_WITH_SUPPORT_EMAIL",
+  supportEmail: "luis@hellomdlabs.com",
   // Paste Stripe Payment Link URLs here after Stripe is set up (Phase 4)
   links: {
     tripod: "https://buy.stripe.com/7sYbIT7dJ3ma37w9yB5ZC02",
