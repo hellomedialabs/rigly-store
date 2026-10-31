@@ -4,23 +4,23 @@ const RIGLY = {
   contactKey: "4473c871-a0b8-4d91-99d3-b998170749c2",
   // Stripe Payment Links, one per product
   links: {
-    light: "https://buy.stripe.com/8x26ozbtZ7CqfUi2695ZC06",
-    tripod: "https://buy.stripe.com/aFaaEPapV2i6eQe9yB5ZC05",
-    facetrack: "https://buy.stripe.com/4gM00beGb5ui4bA8ux5ZC07",
-    powerbank: "https://buy.stripe.com/bJeeV569F1e223sbGJ5ZC08",
-    micusbc: "https://buy.stripe.com/aFa7sDfKf7CqcI6h135ZC09",
-    miclightning: "https://buy.stripe.com/14A5kv7dJe0O37wcKN5ZC0a",
-    ringlight: "https://buy.stripe.com/00w7sD2Xt7Cq0ZoeSV5ZC0d"
+    light: "https://buy.stripe.com/aFa8wH41x5uidMa8ux5ZC0e",
+    tripod: "https://buy.stripe.com/7sYbITfKf2i6eQe8ux5ZC0f",
+    facetrack: "https://buy.stripe.com/28E9AL9lRe0O7nM8ux5ZC0g",
+    powerbank: "https://buy.stripe.com/8x25kv7dJcWKgYm9yB5ZC0h",
+    micusbc: "https://buy.stripe.com/14A4gr0PlbSG4bA6mp5ZC0i",
+    miclightning: "https://buy.stripe.com/bJe7sDapVaOC5fE3ad5ZC0j",
+    ringlight: "https://buy.stripe.com/5kQ00b2Xt6ymgYm7qt5ZC0k"
   },
   // Display prices (must match the Stripe links above)
   prices: {
-    light: "29.99",
-    tripod: "24.99",
-    facetrack: "44.99",
-    powerbank: "34.99",
-    micusbc: "29.99",
-    miclightning: "29.99",
-    ringlight: "19.99"
+    light: "22.99",
+    tripod: "22.99",
+    facetrack: "29.99",
+    powerbank: "24.99",
+    micusbc: "24.99",
+    miclightning: "24.99",
+    ringlight: "17.99"
   }
 };
 // ===== END EDIT BLOCK =====
