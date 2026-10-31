@@ -1,7 +1,7 @@
 // ===== EDIT ONLY THIS BLOCK =====
 const RIGLY = {
-  // Paste a Formspree (or similar) form endpoint URL here to enable the contact form
-  contactForm: "",
+  // Web3Forms public access key (safe to publish)
+  contactKey: "4473c871-a0b8-4d91-99d3-b998170749c2",
   // Paste Stripe Payment Link URLs here after Stripe is set up (Phase 4)
   links: {
     tripod: "https://buy.stripe.com/7sYbIT7dJ3ma37w9yB5ZC02",
@@ -17,8 +17,22 @@ const RIGLY = {
 
 const form = document.getElementById("contact-form");
 if (form) {
-  if (RIGLY.contactForm) { form.action = RIGLY.contactForm; form.hidden = false; }
-  else { document.getElementById("form-pending").hidden = false; }
+  const status = document.getElementById("form-status");
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const data = new FormData(form);
+    data.append("access_key", RIGLY.contactKey);
+    data.append("subject", "Rigly store message");
+    status.textContent = "Sending...";
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: data });
+      const json = await res.json();
+      if (json.success) { status.textContent = "Thanks! We will reply within 2 business days."; form.reset(); }
+      else { status.textContent = "Sorry, something went wrong. Please try again later."; }
+    } catch (err) {
+      status.textContent = "Sorry, something went wrong. Please try again later.";
+    }
+  });
 }
 document.querySelectorAll("[data-buy]").forEach(el => {
   const key = el.dataset.buy;
