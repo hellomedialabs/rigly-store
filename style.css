@@ -132,8 +132,7 @@ ul { padding: 0; list-style: none; }
 /* ---------- home: more gear grid ---------- */
 .more { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 12px; }
 .more .tile { margin: 0; }
-.mini { grid-column: span 2; display: flex; flex-direction: column; align-items: center; padding-top: 40px; }
-.mini:nth-child(n+4) { grid-column: span 3; }
+.mini { grid-column: span 3; display: flex; flex-direction: column; align-items: center; padding-top: 40px; }
 .mini h3 { font: 600 32px/36px var(--display); letter-spacing: -.003em; }
 .mini .tag { margin-top: 4px; font: 400 19px/23px var(--display); }
 .mini .cta { gap: 10px; margin-top: 16px; }
@@ -186,8 +185,7 @@ ul { padding: 0; list-style: none; }
   .intro h1 { font-size: 40px; line-height: 44px; }
   .intro h2 { font-size: 32px; line-height: 36px; }
   .more { grid-template-columns: 1fr 1fr; }
-  .mini, .mini:nth-child(n+4) { grid-column: span 1; }
-  .mini:last-child { grid-column: span 2; }
+  .mini { grid-column: span 1; }
 }
 @media (max-width: 734px) {
   .gnav ul { gap: 16px; }
@@ -198,7 +196,6 @@ ul { padding: 0; list-style: none; }
   .intro h1 { font-size: 34px; line-height: 38px; }
   .intro h2, .more-intro h2 { font-size: 28px; line-height: 32px; }
   .duo, .pair, .more { grid-template-columns: 1fr; }
-  .mini, .mini:last-child, .mini:nth-child(n+4) { grid-column: span 1; }
   .prod { min-height: 600px; padding-top: 40px; }
   .prod .shot-wrap, .mini .shot-wrap { width: min(340px, 82%); }
   .chip { bottom: 18px; gap: 10px; padding: 10px 16px; font-size: 12px; }

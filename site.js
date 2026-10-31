@@ -10,8 +10,7 @@ const RIGLY = {
     powerbank: "https://buy.stripe.com/bJeeV569F1e223sbGJ5ZC08",
     micusbc: "https://buy.stripe.com/aFa7sDfKf7CqcI6h135ZC09",
     miclightning: "https://buy.stripe.com/14A5kv7dJe0O37wcKN5ZC0a",
-    ringlight: "https://buy.stripe.com/00w7sD2Xt7Cq0ZoeSV5ZC0d",
-    gimbal: "https://buy.stripe.com/28E7sDgOj7Cq0ZoeSV5ZC0c"
+    ringlight: "https://buy.stripe.com/00w7sD2Xt7Cq0ZoeSV5ZC0d"
   },
   // Display prices (must match the Stripe links above)
   prices: {
@@ -21,8 +20,7 @@ const RIGLY = {
     powerbank: "34.99",
     micusbc: "29.99",
     miclightning: "29.99",
-    ringlight: "19.99",
-    gimbal: "79.99"
+    ringlight: "19.99"
   }
 };
 // ===== END EDIT BLOCK =====
